@@ -16,10 +16,12 @@
     "url": "https://github.com/IgorShayderov/frontend-project-lvl2/issues"
   },
   "homepage": "https://github.com/IgorShayderov/frontend-project-lvl2#readme",
+  "type": "module",
   "bin": {
-    "gendiff": "gendiff.js"
+    "gendiff": "bin/gendiff.js"
   },
   "dependencies": {
-    "commander": "^9.2.0"
+    "commander": "^9.2.0",
+    "lodash": "^4.17.21"
   }
 }
