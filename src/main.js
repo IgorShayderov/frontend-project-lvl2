@@ -14,8 +14,7 @@ function getFilesByPath(...filepaths) {
   return files;
 }
 
-export default function genDiff(filepath1, filepath2) {
-  const [firstFile, secondFile] = getFilesByPath(filepath1, filepath2);
+export function genDiff(firstFile, secondFile) {
   const allKeys = _.union(Object.keys(firstFile), (Object.keys(secondFile)));
 
   return allKeys.reduce((result, fileKey) => {
@@ -29,7 +28,7 @@ export default function genDiff(filepath1, filepath2) {
       }
 
       return `${noEndingBraceStr} + ${fileKey}: ${firstFile[fileKey]}\n`
-                  + ` - ${fileKey}: ${secondFile[fileKey]}\n}`;
+        + ` - ${fileKey}: ${secondFile[fileKey]}\n}`;
     }
 
     if (isExistsInFirstFile && !isExistsInSecondFile) {
@@ -38,4 +37,10 @@ export default function genDiff(filepath1, filepath2) {
 
     return `${noEndingBraceStr} - ${fileKey}: ${secondFile[fileKey]}\n}`;
   }, '{\n}');
+}
+
+export function compareFiles(filepath1, filepath2) {
+  const [firstFile, secondFile] = getFilesByPath(filepath1, filepath2);
+
+  return genDiff(firstFile, secondFile);
 }
