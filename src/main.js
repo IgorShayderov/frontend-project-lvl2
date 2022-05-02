@@ -4,9 +4,8 @@ import _ from 'lodash';
 
 function getFilesByPath(...filepaths) {
   const workingDir = process.cwd();
-  const files = filepaths.map(filepath => {
+  const files = filepaths.map((filepath) => {
     const fullPath = path.resolve(workingDir, filepath);
-
     const file = fs.readFileSync(fullPath);
 
     return JSON.parse(file);
@@ -24,18 +23,18 @@ export default function genDiff(filepath1, filepath2) {
     const isExistsInSecondFile = Object.prototype.hasOwnProperty.call(secondFile, fileKey);
     const noEndingBraceStr = result.slice(0, result.length - 1);
 
-      if (isExistsInFirstFile && isExistsInSecondFile) {
-        if (firstFile[fileKey] === secondFile[fileKey]) {
-          return `${noEndingBraceStr}   ${fileKey}: ${firstFile[fileKey]}\n}`;
-        } else {
-          return `${noEndingBraceStr} + ${fileKey}: ${firstFile[fileKey]}\n` +
-                  ` - ${fileKey}: ${secondFile[fileKey]}\n}`;
-        }
+    if (isExistsInFirstFile && isExistsInSecondFile) {
+      if (firstFile[fileKey] === secondFile[fileKey]) {
+        return `${noEndingBraceStr}   ${fileKey}: ${firstFile[fileKey]}\n}`;
       }
 
-      if (isExistsInFirstFile && !isExistsInSecondFile) {
-        return `${noEndingBraceStr} + ${fileKey}: ${firstFile[fileKey]}\n}`;
-      }
+      return `${noEndingBraceStr} + ${fileKey}: ${firstFile[fileKey]}\n`
+                  + ` - ${fileKey}: ${secondFile[fileKey]}\n}`;
+    }
+
+    if (isExistsInFirstFile && !isExistsInSecondFile) {
+      return `${noEndingBraceStr} + ${fileKey}: ${firstFile[fileKey]}\n}`;
+    }
 
     return `${noEndingBraceStr} - ${fileKey}: ${secondFile[fileKey]}\n}`;
   }, '{\n}');
