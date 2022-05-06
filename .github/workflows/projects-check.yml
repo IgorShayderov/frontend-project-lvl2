@@ -9,3 +9,5 @@ jobs:
         run: make install
       - name: linting
         run: make lint
+      - name: tests
+        run: make test
