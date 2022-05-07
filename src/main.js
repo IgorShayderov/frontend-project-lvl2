@@ -2,13 +2,23 @@ import fs from 'fs';
 import path from 'path';
 import _ from 'lodash';
 
+import { parseYml } from './parsers.js';
+
 function getFilesByPath(...filepaths) {
   const workingDir = process.cwd();
   const files = filepaths.map((filepath) => {
     const fullPath = path.resolve(workingDir, filepath);
     const file = fs.readFileSync(fullPath);
+    const fileExtension = path.extname(filepath);
 
-    return JSON.parse(file);
+    switch (fileExtension) {
+      case '.json':
+        return JSON.parse(file);
+      case '.yml':
+        return parseYml(file);
+      default:
+        throw new Error(`Unknown file extension - ${fileExtension}`);
+    }
   });
 
   return files;

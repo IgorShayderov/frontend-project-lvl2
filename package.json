@@ -24,6 +24,7 @@
     "commander": "^9.2.0",
     "eslint-plugin-jest": "^26.1.5",
     "jest": "^28.0.3",
+    "js-yaml": "^4.1.0",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
