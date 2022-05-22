@@ -2,7 +2,8 @@ import fs from 'fs';
 import path from 'path';
 import _ from 'lodash';
 
-import { parseYml } from './parsers.js';
+import { parseYml, parseJSON } from './parsers.js';
+import { formatDiff } from './formaters.js';
 
 function getFilesByPath(...filepaths) {
   const workingDir = process.cwd();
@@ -13,7 +14,7 @@ function getFilesByPath(...filepaths) {
 
     switch (fileExtension) {
       case '.json':
-        return JSON.parse(file);
+        return parseJSON(file);
       case '.yml':
         return parseYml(file);
       default:
@@ -30,27 +31,24 @@ export function genDiff(firstFile, secondFile) {
   return allKeys.reduce((result, fileKey) => {
     const isExistsInFirstFile = Object.prototype.hasOwnProperty.call(firstFile, fileKey);
     const isExistsInSecondFile = Object.prototype.hasOwnProperty.call(secondFile, fileKey);
-    const noEndingBraceStr = result.slice(0, result.length - 1);
+    const areValuesEqual = firstFile[fileKey] === secondFile[fileKey];
 
-    if (isExistsInFirstFile && isExistsInSecondFile) {
-      if (firstFile[fileKey] === secondFile[fileKey]) {
-        return `${noEndingBraceStr}   ${fileKey}: ${firstFile[fileKey]}\n}`;
-      }
-
-      return `${noEndingBraceStr} + ${fileKey}: ${firstFile[fileKey]}\n`
-        + ` - ${fileKey}: ${secondFile[fileKey]}\n}`;
-    }
-
-    if (isExistsInFirstFile && !isExistsInSecondFile) {
-      return `${noEndingBraceStr} + ${fileKey}: ${firstFile[fileKey]}\n}`;
-    }
-
-    return `${noEndingBraceStr} - ${fileKey}: ${secondFile[fileKey]}\n}`;
-  }, '{\n}');
+    return {
+      ...result,
+      [fileKey]: {
+        isExistsInFirstFile,
+        isExistsInSecondFile,
+        areValuesEqual,
+        firstFileValue: firstFile[fileKey],
+        secondFileValue: secondFile[fileKey],
+      },
+    };
+  }, {});
 }
 
 export function compareFiles(filepath1, filepath2) {
   const [firstFile, secondFile] = getFilesByPath(filepath1, filepath2);
+  const diff = genDiff(firstFile, secondFile);
 
-  return genDiff(firstFile, secondFile);
+  return formatDiff(diff, 'stylish');
 }
