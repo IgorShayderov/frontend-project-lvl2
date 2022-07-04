@@ -25,23 +25,61 @@ function getFilesByPath(...filepaths) {
   return files;
 }
 
-export function genDiff(firstFile, secondFile) {
-  const allKeys = _.union(Object.keys(firstFile), (Object.keys(secondFile)));
+export function genDiff(firstStructure, secondStructure) {
+  const allKeys = _.union(Object.keys(firstStructure), (Object.keys(secondStructure)));
 
   return allKeys.reduce((result, fileKey) => {
-    const isExistsInFirstFile = Object.prototype.hasOwnProperty.call(firstFile, fileKey);
-    const isExistsInSecondFile = Object.prototype.hasOwnProperty.call(secondFile, fileKey);
-    const areValuesEqual = firstFile[fileKey] === secondFile[fileKey];
+    const isExistsInFirstFile = Object.prototype.hasOwnProperty.call(firstStructure, fileKey);
+    const isExistsInSecondFile = Object.prototype.hasOwnProperty.call(secondStructure, fileKey);
+
+    const firstValue = firstStructure[fileKey];
+    const secondValue = secondStructure[fileKey];
+
+    const diff = (() => {
+      if (isExistsInFirstFile && !isExistsInSecondFile) {
+        return {
+          type: 'only-in-first',
+          firstValue,
+        };
+      }
+
+      if (!isExistsInFirstFile && isExistsInSecondFile) {
+        return {
+          type: 'only-in-second',
+          secondValue,
+        };
+      }
+
+      if (isExistsInFirstFile && isExistsInSecondFile) {
+        const areValuesEqual = _.isEqual(firstValue, secondValue);
+
+        if (areValuesEqual) {
+          return {
+            type: 'both-equal',
+            firstValue,
+          };
+        }
+
+        const areBothValuesObjects = typeof firstValue === 'object' && typeof secondValue === 'object';
+
+        if (areBothValuesObjects) {
+          return {
+            type: 'nested',
+            firstValue: genDiff(firstValue, secondValue),
+          };
+        }
+      }
+
+      return {
+        type: 'changed',
+        firstValue,
+        secondValue,
+      };
+    })();
 
     return {
       ...result,
-      [fileKey]: {
-        isExistsInFirstFile,
-        isExistsInSecondFile,
-        areValuesEqual,
-        firstFileValue: firstFile[fileKey],
-        secondFileValue: secondFile[fileKey],
-      },
+      [fileKey]: diff,
     };
   }, {});
 }
@@ -49,6 +87,8 @@ export function genDiff(firstFile, secondFile) {
 export function compareFiles(filepath1, filepath2) {
   const [firstFile, secondFile] = getFilesByPath(filepath1, filepath2);
   const diff = genDiff(firstFile, secondFile);
+
+  // console.log(diff, '\ndiff!!!\n');
 
   return formatDiff(diff, 'stylish');
 }

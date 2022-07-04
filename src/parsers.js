@@ -1,9 +1,9 @@
 import yaml from 'js-yaml';
 
-export function parseYml(file) {
-  return yaml.load(file);
+export function parseYml(data) {
+  return yaml.load(data);
 }
 
-export function parseJSON(file) {
-  return JSON.parse(file);
+export function parseJSON(data) {
+  return JSON.parse(data);
 }

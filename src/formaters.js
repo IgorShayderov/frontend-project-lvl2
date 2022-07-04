@@ -1,28 +1,47 @@
-function stylish(diff) {
+export function stylish(diff) {
   return Object.keys(diff).reduce((result, diffKey) => {
     const {
-      isExistsInFirstFile,
-      isExistsInSecondFile,
-      areValuesEqual,
-      firstFileValue,
-      secondFileValue,
+      type,
+      firstValue,
+      secondValue,
+      children,
     } = diff[diffKey];
+
     const noEndingBraceStr = result.slice(0, result.length - 1);
 
-    if (isExistsInFirstFile && isExistsInSecondFile) {
-      if (areValuesEqual) {
-        return `${noEndingBraceStr}   ${diffKey}: ${firstFileValue}\n}`;
+    // if (isExistsInFirstFile && isExistsInSecondFile) {
+    //   if (areValuesEqual) {
+    //     return `${noEndingBraceStr}   ${diffKey}: ${firstValue}\n}`;
+    //   }
+
+    //   return `${noEndingBraceStr} + ${diffKey}: ${firstValue}\n`
+    //   + ` - ${diffKey}: ${secondValue}\n}`;
+    // }
+
+    // if (isExistsInFirstFile && !isExistsInSecondFile) {
+    //   return `${noEndingBraceStr} + ${diffKey}: ${firstValue}\n}`;
+    // }
+    function hz() {
+      switch (type) {
+        case 'only-in-first':
+          return `- ${diffKey}: ${firstValue}\n`;
+        case 'only-in-second':
+          return `+ ${diffKey}: ${secondValue}\n`;
+        case 'nested':
+          return stylish(children);
+        case 'both-equal':
+          return `  ${diffKey}: ${firstValue}\n`;
+        case 'changed':
+          return `- ${diffKey}: ${firstValue}\n`
+               + `+ ${diffKey}: ${secondValue}\n`;
+        default:
+          throw new Error(`Unknown type ${type}`);
       }
-
-      return `${noEndingBraceStr} + ${diffKey}: ${firstFileValue}\n`
-      + ` - ${diffKey}: ${secondFileValue}\n}`;
     }
 
-    if (isExistsInFirstFile && !isExistsInSecondFile) {
-      return `${noEndingBraceStr} + ${diffKey}: ${firstFileValue}\n}`;
-    }
+    const newStr = hz();
 
-    return `${noEndingBraceStr} - ${diffKey}: ${secondFileValue}\n}`;
+    return `${noEndingBraceStr}${newStr}}`;
   }, '{\n}');
 }
 
