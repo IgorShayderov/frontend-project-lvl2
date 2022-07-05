@@ -1,3 +1,7 @@
+# Gendiff project
+
+Gendiff can compare files and show their differences.
+
 ### Hexlet tests and linter status:
 
 [![Actions Status](https://github.com/IgorShayderov/frontend-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/IgorShayderov/frontend-project-lvl2/actions)
@@ -16,5 +20,5 @@
   <img src="https://api.codeclimate.com/v1/badges/3f3ac9a360712d5b73e5/test_coverage" />
 </a>
 
-# Example of flat files comparison:
+### Example of flat files comparison:
 [![asciicast](https://asciinema.org/a/k98KiPdssmsHaQU9WLfYRha63.svg)](https://asciinema.org/a/k98KiPdssmsHaQU9WLfYRha63)
