@@ -4,7 +4,7 @@
   "description": "[![Actions Status](https://github.com/IgorShayderov/frontend-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/IgorShayderov/frontend-project-lvl2/actions)",
   "main": "src/main.js",
   "scripts": {
-    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest --bail"
+    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest --bail --coverage"
   },
   "repository": {
     "type": "git",
