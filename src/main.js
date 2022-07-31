@@ -1,8 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 
-import { parseYml, parseJSON } from './parsers.js';
-import { formatDiff } from './formaters.js';
+import { parseData } from './parsers.js';
+import { formatDiff } from './formatters/index.js';
 import { buildTree } from './treeBuilder.js';
 
 function getFilesByPath(...filepaths) {
@@ -12,14 +12,7 @@ function getFilesByPath(...filepaths) {
     const file = fs.readFileSync(fullPath);
     const fileExtension = path.extname(filepath);
 
-    switch (fileExtension) {
-      case '.json':
-        return parseJSON(file);
-      case '.yml':
-        return parseYml(file);
-      default:
-        throw new Error(`Unknown file extension - ${fileExtension}`);
-    }
+    return parseData(file, fileExtension);
   });
 
   return files;

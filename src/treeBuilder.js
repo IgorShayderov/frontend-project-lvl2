@@ -4,28 +4,28 @@ export function buildTree(firstStructure, secondStructure) {
   const allKeys = _.union(Object.keys(firstStructure), (Object.keys(secondStructure)));
 
   return allKeys.reduce((result, fileKey) => {
-    const isExistsInFirstFile = Object.prototype.hasOwnProperty.call(firstStructure, fileKey);
-    const isExistsInSecondFile = Object.prototype.hasOwnProperty.call(secondStructure, fileKey);
+    const isExistsInFirst = _.has(firstStructure, fileKey);
+    const isExistsInSecond = _.has(secondStructure, fileKey);
 
     const firstValue = firstStructure[fileKey];
     const secondValue = secondStructure[fileKey];
 
     const diff = (() => {
-      if (isExistsInFirstFile && !isExistsInSecondFile) {
+      if (isExistsInFirst && !isExistsInSecond) {
         return {
           type: 'only-in-first',
           firstValue,
         };
       }
 
-      if (!isExistsInFirstFile && isExistsInSecondFile) {
+      if (!isExistsInFirst && isExistsInSecond) {
         return {
           type: 'only-in-second',
           secondValue,
         };
       }
 
-      if (isExistsInFirstFile && isExistsInSecondFile) {
+      if (isExistsInFirst && isExistsInSecond) {
         const areValuesEqual = _.isEqual(firstValue, secondValue);
 
         if (areValuesEqual) {
@@ -35,12 +35,14 @@ export function buildTree(firstStructure, secondStructure) {
           };
         }
 
-        const areBothValuesObjects = typeof firstValue === 'object' && typeof secondValue === 'object';
+        const isFirstValueObject = _.isPlainObject(firstValue);
+        const isScondValueObject = _.isPlainObject(secondValue);
+        const areBothValuesObjects = isFirstValueObject && isScondValueObject;
 
         if (areBothValuesObjects) {
           return {
             type: 'nested',
-            firstValue: buildTree(firstValue, secondValue),
+            children: buildTree(firstValue, secondValue),
           };
         }
       }
