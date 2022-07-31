@@ -22,7 +22,5 @@ export function compareFiles(filepath1, filepath2) {
   const [firstFile, secondFile] = getFilesByPath(filepath1, filepath2);
   const diff = buildTree(firstFile, secondFile);
 
-  console.log(diff, '\ndiff!!!\n');
-
   return formatDiff(diff, 'stylish');
 }

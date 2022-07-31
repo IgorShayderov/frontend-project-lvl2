@@ -5,7 +5,7 @@ export function stylish(diff) {
     function stringify(value) {
       if (_.isPlainObject(value)) {
         const valueKeys = Object.keys(value);
-        const hz = valueKeys.reduce((obj, key) => {
+        const objAsDiff = valueKeys.reduce((obj, key) => {
           const newObj = {
             ...obj,
             [key]: {
@@ -17,7 +17,7 @@ export function stylish(diff) {
           return newObj;
         }, {});
 
-        return formatDeeper(hz, depth + 1);
+        return formatDeeper(objAsDiff, depth + 1);
       }
 
       return `${value}`;
@@ -47,7 +47,7 @@ export function stylish(diff) {
               return `${indent}${diffKey}: ${stringify(firstValue)}\n`;
             case 'changed':
               return `${mathSignLineIndent}- ${diffKey}: ${stringify(firstValue)}\n`
-                 + `${mathSignLineIndent}+ ${diffKey}: ${stringify(secondValue)}\n`;
+                   + `${mathSignLineIndent}+ ${diffKey}: ${stringify(secondValue)}\n`;
             default:
               throw new Error(`Unknown type ${type}`);
           }
