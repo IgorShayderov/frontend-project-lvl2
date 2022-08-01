@@ -5,8 +5,7 @@ Gendiff can compare files and show their differences.
 ### Hexlet tests and linter status:
 
 [![Hexlet-check](https://github.com/IgorShayderov/frontend-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/IgorShayderov/frontend-project-lvl2/actions)
-[![Projects-check](https://github.com/IgorShayderov/frontend-project-lvl2/workflows/projects-check/badge.svg)](https://github.com/IgorShayderov/frontend-project-lvl2/actions/workflows/projects-check.yml)
-
+[![Projects-check](https://github.com/IgorShayderov/frontend-project-lvl2/actions/workflows/projects-check.yml/badge.svg)](https://github.com/IgorShayderov/frontend-project-lvl2/actions/workflows/projects-check.yml)
 
 ### Codeclimate
 
