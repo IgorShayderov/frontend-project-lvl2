@@ -34,7 +34,7 @@ export function plain(diff) {
           case 'only-in-second':
           case 'both-equal':
             if (secondValue === undefined) {
-              return '';
+              return result;
             }
 
             return `${result}Property '${propPath}' was added with value: `
