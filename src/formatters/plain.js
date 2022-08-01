@@ -33,6 +33,10 @@ export function plain(diff) {
             return `${result}Property '${propPath}' was removed\n`;
           case 'only-in-second':
           case 'both-equal':
+            if (secondValue === undefined) {
+              return '';
+            }
+
             return `${result}Property '${propPath}' was added with value: `
                  + `${printValue(secondValue)}\n`;
           case 'nested':
