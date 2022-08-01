@@ -6,6 +6,9 @@ Gendiff can compare files and show their differences.
 
 [![Actions Status](https://github.com/IgorShayderov/frontend-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/IgorShayderov/frontend-project-lvl2/actions)
 
+[![Actions Status](https://github.com/IgorShayderov/frontend-project-lvl2/workflows/projects-check/badge.svg)](https://github.com/IgorShayderov/frontend-project-lvl2/actions)
+
+
 ### Codeclimate
 
 ## Maintainability
