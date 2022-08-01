@@ -1,6 +1,10 @@
 function printValue(value) {
   const valueType = typeof value;
 
+  if (value === null) {
+    return 'null';
+  }
+
   switch (valueType) {
     case 'string':
       return `'${value}'`;
