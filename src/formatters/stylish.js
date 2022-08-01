@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-export function stylish(diff) {
+export default function stylish(diff) {
   function formatDeeper(data, depth = 1) {
     function stringify(value) {
       if (_.isPlainObject(value)) {

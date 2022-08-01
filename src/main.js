@@ -1,13 +1,13 @@
 import fs from 'fs';
 import path from 'path';
 
-import { parseData } from './parsers.js';
-import { formatDiff } from './formatters/index.js';
-import { buildTree } from './treeBuilder.js';
+import parseData from './parsers.js';
+import formatDiff from './formatters/index.js';
+import buildTree from './treeBuilder.js';
 
-function getFilesByPath(...filepaths) {
+function getFilesByPath(filepath1, filepath2) {
   const workingDir = process.cwd();
-  const files = filepaths.map((filepath) => {
+  const files = [filepath1, filepath2].map((filepath) => {
     const fullPath = path.resolve(workingDir, filepath);
     const file = fs.readFileSync(fullPath);
     const fileExtension = path.extname(filepath);

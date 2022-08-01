@@ -1,6 +1,6 @@
 import yaml from 'js-yaml';
 
-export function parseData(data, extension) {
+export default function parseData(data, extension) {
   switch (extension) {
     case '.json':
       return JSON.parse(data);

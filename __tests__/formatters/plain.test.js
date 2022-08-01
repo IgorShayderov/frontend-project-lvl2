@@ -1,4 +1,4 @@
-import { plain } from '../../src/formatters/plain.js';
+import plain from '../../src/formatters/plain.js';
 
 describe('plain formatter', () => {
   describe('should render certain output', () => {

@@ -15,7 +15,7 @@ function printValue(value) {
   }
 }
 
-export function plain(diff) {
+export default function plain(diff) {
   function formatDeeper(data, root = '') {
     return Object.keys(data)
       .reduce((result, key) => {

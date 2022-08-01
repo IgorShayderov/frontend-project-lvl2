@@ -1,4 +1,4 @@
-import { stylish } from '../../src/formatters/stylish.js';
+import stylish from '../../src/formatters/stylish.js';
 
 describe('stylish formatter', () => {
   describe('should render certain output', () => {

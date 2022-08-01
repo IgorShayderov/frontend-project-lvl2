@@ -1,4 +1,4 @@
-import { buildTree } from '../src/treeBuilder.js';
+import buildTree from '../src/treeBuilder.js';
 
 describe('buildTree function', () => {
   test.each([
