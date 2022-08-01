@@ -26,5 +26,8 @@ Gendiff can compare files and show their differences.
 #### Example of nested files comparison:
 [![asciicast](https://asciinema.org/a/6csACtwDV2docQrTWQuyUkbA7.svg)](https://asciinema.org/a/6csACtwDV2docQrTWQuyUkbA7)
 
-### Example of plain format comparsion:
+### Example of plain format comparison:
 [![asciicast](https://asciinema.org/a/LrWTKX0O2InTt0Msa5GrnvP7B.svg)](https://asciinema.org/a/LrWTKX0O2InTt0Msa5GrnvP7B)
+
+### Example of json format comparison:
+[![asciicast](https://asciinema.org/a/W0kMhupTzIjhDKIPB1ge3Z2tW.svg)](https://asciinema.org/a/W0kMhupTzIjhDKIPB1ge3Z2tW)

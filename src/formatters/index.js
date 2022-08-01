@@ -7,6 +7,8 @@ export function formatDiff(diff, formatterName) {
       return stylish(diff);
     case 'plain':
       return plain(diff);
+    case 'json':
+      return JSON.stringify(diff, null, 2);
     default:
       throw new Error(`Unknown formatter name - ${formatterName}`);
   }
