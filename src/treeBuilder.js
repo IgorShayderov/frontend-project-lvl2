@@ -1,7 +1,18 @@
 import _ from 'lodash';
 
 export function buildTree(firstStructure, secondStructure) {
-  const allKeys = _.union(Object.keys(firstStructure), (Object.keys(secondStructure)));
+  const allKeys = _.union(Object.keys(firstStructure), (Object.keys(secondStructure)))
+    .sort((keyA, keyB) => {
+      if (keyA > keyB) {
+        return 1;
+      }
+
+      if (keyA < keyB) {
+        return -1;
+      }
+
+      return 0;
+    });
 
   return allKeys.reduce((result, fileKey) => {
     const isExistsInFirst = _.has(firstStructure, fileKey);
