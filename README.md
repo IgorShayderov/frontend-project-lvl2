@@ -22,3 +22,9 @@ Gendiff can compare files and show their differences.
 
 ### Example of flat files comparison:
 [![asciicast](https://asciinema.org/a/k98KiPdssmsHaQU9WLfYRha63.svg)](https://asciinema.org/a/k98KiPdssmsHaQU9WLfYRha63)
+
+#### Example of nested files comparison:
+[![asciicast](https://asciinema.org/a/6csACtwDV2docQrTWQuyUkbA7.svg)](https://asciinema.org/a/6csACtwDV2docQrTWQuyUkbA7)
+
+### Example of plain format comparsion:
+[![asciicast](https://asciinema.org/a/LrWTKX0O2InTt0Msa5GrnvP7B.svg)](https://asciinema.org/a/LrWTKX0O2InTt0Msa5GrnvP7B)

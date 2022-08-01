@@ -31,6 +31,23 @@ describe('buildTree function', () => {
           secondValue: '__',
         },
       }],
+    ['both properties are objects',
+      { _: { prop1: '_' } }, { _: { prop2: '__' } }, {
+        _: {
+          type: 'nested',
+          children: {
+            prop1: {
+              firstValue: '_',
+              type: 'only-in-first',
+            },
+            prop2: {
+              secondValue: '__',
+              type: 'only-in-second',
+            },
+          },
+        },
+      },
+    ],
   ])(
     'should match when %s',
     (_description, firstStructure, secondStructure, expected) => {

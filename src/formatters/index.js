@@ -1,7 +1,7 @@
 import { plain } from './plain.js';
 import { stylish } from './stylish.js';
 
-export function formatDiff(diff, formatterName = 'stylish') {
+export function formatDiff(diff, formatterName) {
   switch (formatterName) {
     case 'stylish':
       return stylish(diff);

@@ -1,34 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1659290666592" clover="3.2.0">
-  <project timestamp="1659290666592" name="All files">
-    <metrics statements="25" coveredstatements="18" conditionals="11" coveredconditionals="8" methods="6" coveredmethods="5" elements="42" coveredelements="31" complexity="0" loc="25" ncloc="25" packages="1" files="1" classes="1"/>
-    <file name="stylish.js" path="/Users/igor_s/Documents/projects/frontend-project-lvl2/src/formatters/stylish.js">
-      <metrics statements="25" coveredstatements="18" conditionals="11" coveredconditionals="8" methods="6" coveredmethods="5"/>
-      <line num="6" count="6" type="cond" truecount="1" falsecount="1"/>
-      <line num="7" count="0" type="stmt"/>
+<coverage generated="1659385967952" clover="3.2.0">
+  <project timestamp="1659385967952" name="All files">
+    <metrics statements="15" coveredstatements="12" conditionals="10" coveredconditionals="7" methods="4" coveredmethods="4" elements="29" coveredelements="23" complexity="0" loc="15" ncloc="15" packages="1" files="1" classes="1"/>
+    <file name="plain.js" path="/Users/igor_s/Documents/projects/frontend-project-lvl2/src/formatters/plain.js">
+      <metrics statements="15" coveredstatements="12" conditionals="10" coveredconditionals="7" methods="4" coveredmethods="4"/>
+      <line num="2" count="4" type="stmt"/>
+      <line num="4" count="4" type="cond" truecount="1" falsecount="2"/>
+      <line num="6" count="4" type="stmt"/>
       <line num="8" count="0" type="stmt"/>
-      <line num="9" count="0" type="stmt"/>
-      <line num="17" count="0" type="stmt"/>
-      <line num="20" count="0" type="stmt"/>
+      <line num="10" count="0" type="stmt"/>
+      <line num="16" count="6" type="stmt"/>
       <line num="23" count="6" type="stmt"/>
-      <line num="26" count="6" type="stmt"/>
-      <line num="34" count="6" type="stmt"/>
-      <line num="36" count="6" type="stmt"/>
-      <line num="37" count="6" type="stmt"/>
-      <line num="39" count="6" type="cond" truecount="5" falsecount="1"/>
-      <line num="41" count="2" type="stmt"/>
-      <line num="43" count="1" type="stmt"/>
-      <line num="45" count="1" type="stmt"/>
-      <line num="47" count="1" type="stmt"/>
-      <line num="49" count="1" type="stmt"/>
-      <line num="52" count="0" type="stmt"/>
-      <line num="56" count="6" type="stmt"/>
-      <line num="57" count="6" type="stmt"/>
-      <line num="59" count="6" type="cond" truecount="1" falsecount="1"/>
-      <line num="60" count="6" type="stmt"/>
-      <line num="62" count="6" type="stmt"/>
-      <line num="65" count="0" type="stmt"/>
-      <line num="69" count="5" type="stmt"/>
+      <line num="25" count="6" type="stmt"/>
+      <line num="27" count="6" type="cond" truecount="5" falsecount="1"/>
+      <line num="29" count="2" type="stmt"/>
+      <line num="32" count="2" type="stmt"/>
+      <line num="35" count="1" type="stmt"/>
+      <line num="37" count="1" type="stmt"/>
+      <line num="40" count="0" type="stmt"/>
+      <line num="45" count="5" type="stmt"/>
     </file>
   </project>
 </coverage>
