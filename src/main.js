@@ -18,7 +18,7 @@ function getFilesByPath(...filepaths) {
   return files;
 }
 
-export function compareFiles(filepath1, filepath2, options = {}) {
+export default function compareFiles(filepath1, filepath2, options = {}) {
   const { format } = options;
   const [firstFile, secondFile] = getFilesByPath(filepath1, filepath2);
   const diff = buildTree(firstFile, secondFile);
