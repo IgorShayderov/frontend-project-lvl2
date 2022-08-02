@@ -21,8 +21,11 @@ Gendiff can compare files and show their differences.
   <img src="https://api.codeclimate.com/v1/badges/3f3ac9a360712d5b73e5/test_coverage" />
 </a>
 
-### Example of flat files comparison:
+### Example of json files comparison:
 [![asciicast](https://asciinema.org/a/k98KiPdssmsHaQU9WLfYRha63.svg)](https://asciinema.org/a/k98KiPdssmsHaQU9WLfYRha63)
+
+### Example of yml files comparison:
+[![asciicast](https://asciinema.org/a/9BYXdb8lelOTwGRkLsx8b71aT.svg)](https://asciinema.org/a/9BYXdb8lelOTwGRkLsx8b71aT)
 
 #### Example of nested files comparison:
 [![asciicast](https://asciinema.org/a/6csACtwDV2docQrTWQuyUkbA7.svg)](https://asciinema.org/a/6csACtwDV2docQrTWQuyUkbA7)
