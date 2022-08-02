@@ -72,5 +72,33 @@ describe('stylish formatter', () => {
 
       expect(result).toBe(expected);
     });
+
+    test('when property exists only in first file and is object', () => {
+      const diff = {
+        _: {
+          type: 'only-in-first',
+          firstValue: {
+            first: '_',
+            second: '__',
+          },
+        },
+      };
+      const result = stylish(diff);
+      const expected = '{\n  - _: {\n        first: _\n        second: __\n    }\n}';
+
+      expect(result).toBe(expected);
+    });
+  });
+
+  test('should throws error when type is unknown', () => {
+    const diff = {
+      _: {
+        type: '_',
+      },
+    };
+
+    expect(() => {
+      stylish(diff);
+    }).toThrow();
   });
 });

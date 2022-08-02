@@ -1,4 +1,4 @@
-function printValue(value) {
+export function printValue(value) {
   const valueType = typeof value;
 
   if (value === null) {
