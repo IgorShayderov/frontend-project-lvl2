@@ -29,10 +29,10 @@ const plain = (diff) => {
         const propPath = `${root}${key}`;
 
         switch (type) {
-          case 'only-in-first':
+          case 'added':
             return `${result}Property '${propPath}' was removed\n`;
-          case 'only-in-second':
-          case 'both-equal':
+          case 'deleted':
+          case 'unchanged':
             if (secondValue === undefined) {
               return result;
             }

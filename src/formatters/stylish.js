@@ -10,7 +10,7 @@ const stylish = (diff) => {
             ...obj,
             [key]: {
               firstValue: value[key],
-              type: 'both-equal',
+              type: 'unchanged',
             },
           };
 
@@ -37,13 +37,13 @@ const stylish = (diff) => {
           const mathSignLineIndent = indent.slice(0, -2);
 
           switch (type) {
-            case 'only-in-first':
+            case 'added':
               return `${mathSignLineIndent}- ${diffKey}: ${stringify(firstValue)}\n`;
-            case 'only-in-second':
+            case 'deleted':
               return `${mathSignLineIndent}+ ${diffKey}: ${stringify(secondValue)}\n`;
             case 'nested':
               return `${indent}${diffKey}: ${formatDeeper(children, depth + 1)}\n`;
-            case 'both-equal':
+            case 'unchanged':
               return `${indent}${diffKey}: ${stringify(firstValue)}\n`;
             case 'changed':
               return `${mathSignLineIndent}- ${diffKey}: ${stringify(firstValue)}\n`

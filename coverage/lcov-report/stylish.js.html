@@ -15,41 +15,41 @@
         }
     </style>
 </head>
-    
+
 <body>
 <div class='wrapper'>
     <div class='pad1'>
         <h1><a href="index.html">All files</a> stylish.js</h1>
         <div class='clearfix'>
-            
+
             <div class='fl pad1y space-right2'>
                 <span class="strong">84% </span>
                 <span class="quiet">Statements</span>
                 <span class='fraction'>21/25</span>
             </div>
-        
-            
+
+
             <div class='fl pad1y space-right2'>
                 <span class="strong">63.63% </span>
                 <span class="quiet">Branches</span>
                 <span class='fraction'>7/11</span>
             </div>
-        
-            
+
+
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
                 <span class='fraction'>6/6</span>
             </div>
-        
-            
+
+
             <div class='fl pad1y space-right2'>
                 <span class="strong">84% </span>
                 <span class="quiet">Lines</span>
                 <span class='fraction'>21/25</span>
             </div>
-        
-            
+
+
         </div>
         <p class="quiet">
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
@@ -215,7 +215,7 @@ export default function stylish(diff) {
             ...obj,
             [key]: {
               firstValue: value[key],
-              type: 'both-equal',
+              type: 'unchanged',
             },
           };
 &nbsp;
@@ -242,13 +242,13 @@ export default function stylish(diff) {
           const mathSignLineIndent = indent.slice(0, -2);
 &nbsp;
           switch (type) {
-            case 'only-in-first':
+            case 'added':
               return `${mathSignLineIndent}- ${diffKey}: ${stringify(firstValue)}\n`;
-<span class="branch-1 cbranch-no" title="branch not covered" >            case 'only-in-second':</span>
+<span class="branch-1 cbranch-no" title="branch not covered" >            case 'deleted':</span>
 <span class="cstat-no" title="statement not covered" >              return `${mathSignLineIndent}+ ${diffKey}: ${stringify(secondValue)}\n`;</span>
 <span class="branch-2 cbranch-no" title="branch not covered" >            case 'nested':</span>
 <span class="cstat-no" title="statement not covered" >              return `${indent}${diffKey}: ${formatDeeper(children, depth + 1)}\n`;</span>
-            case 'both-equal':
+            case 'unchanged':
               return `${indent}${diffKey}: ${stringify(firstValue)}\n`;
 <span class="branch-4 cbranch-no" title="branch not covered" >            case 'changed':</span>
 <span class="cstat-no" title="statement not covered" >              return `${mathSignLineIndent}- ${diffKey}: ${stringify(firstValue)}\n`</span>
@@ -292,4 +292,3 @@ export default function stylish(diff) {
         <script src="block-navigation.js"></script>
     </body>
 </html>
-    

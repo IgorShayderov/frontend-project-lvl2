@@ -14,14 +14,14 @@ const buildTree = (firstStructure, secondStructure) => {
     const diff = (() => {
       if (isExistsInFirst && !isExistsInSecond) {
         return {
-          type: 'only-in-first',
+          type: 'added',
           firstValue,
         };
       }
 
       if (!isExistsInFirst && isExistsInSecond) {
         return {
-          type: 'only-in-second',
+          type: 'deleted',
           secondValue,
         };
       }
@@ -31,7 +31,7 @@ const buildTree = (firstStructure, secondStructure) => {
 
         if (areValuesEqual) {
           return {
-            type: 'both-equal',
+            type: 'unchanged',
             firstValue,
           };
         }

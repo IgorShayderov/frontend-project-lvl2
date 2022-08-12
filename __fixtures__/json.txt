@@ -3,15 +3,15 @@
     "type": "nested",
     "children": {
       "follow": {
-        "type": "only-in-second",
+        "type": "deleted",
         "secondValue": false
       },
       "setting1": {
-        "type": "both-equal",
+        "type": "unchanged",
         "firstValue": "Value 1"
       },
       "setting2": {
-        "type": "only-in-first",
+        "type": "added",
         "firstValue": 200
       },
       "setting3": {
@@ -22,11 +22,11 @@
         }
       },
       "setting4": {
-        "type": "only-in-second",
+        "type": "deleted",
         "secondValue": "blah blah"
       },
       "setting5": {
-        "type": "only-in-second",
+        "type": "deleted",
         "secondValue": {
           "key5": "value5"
         }
@@ -45,11 +45,11 @@
             }
           },
           "key": {
-            "type": "both-equal",
+            "type": "unchanged",
             "firstValue": "value"
           },
           "ops": {
-            "type": "only-in-second",
+            "type": "deleted",
             "secondValue": "vops"
           }
         }
@@ -65,7 +65,7 @@
         "secondValue": "bars"
       },
       "foo": {
-        "type": "both-equal",
+        "type": "unchanged",
         "firstValue": "bar"
       },
       "nest": {
@@ -78,7 +78,7 @@
     }
   },
   "group2": {
-    "type": "only-in-first",
+    "type": "added",
     "firstValue": {
       "abc": 12345,
       "deep": {
@@ -87,7 +87,7 @@
     }
   },
   "group3": {
-    "type": "only-in-second",
+    "type": "deleted",
     "secondValue": {
       "deep": {
         "id": {

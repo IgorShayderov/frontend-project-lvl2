@@ -15,41 +15,41 @@
         }
     </style>
 </head>
-    
+
 <body>
 <div class='wrapper'>
     <div class='pad1'>
         <h1><a href="index.html">All files</a> plain.js</h1>
         <div class='clearfix'>
-            
+
             <div class='fl pad1y space-right2'>
                 <span class="strong">80% </span>
                 <span class="quiet">Statements</span>
                 <span class='fraction'>12/15</span>
             </div>
-        
-            
+
+
             <div class='fl pad1y space-right2'>
                 <span class="strong">70% </span>
                 <span class="quiet">Branches</span>
                 <span class='fraction'>7/10</span>
             </div>
-        
-            
+
+
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
                 <span class='fraction'>4/4</span>
             </div>
-        
-            
+
+
             <div class='fl pad1y space-right2'>
                 <span class="strong">80% </span>
                 <span class="quiet">Lines</span>
                 <span class='fraction'>12/15</span>
             </div>
-        
-            
+
+
         </div>
         <p class="quiet">
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
@@ -182,10 +182,10 @@ export function plain(diff) {
         const propPath = `${root}${key}`;
 &nbsp;
         switch (type) {
-          case 'only-in-first':
+          case 'added':
             return `${result}Property '${propPath}' was removed\n`;
-          case 'only-in-second':
-          case 'both-equal':
+          case 'deleted':
+          case 'unchanged':
             return `${result}Property '${propPath}' was added with value: `
                  + `${printValue(secondValue)}\n`;
           case 'nested':
@@ -220,4 +220,3 @@ export function plain(diff) {
         <script src="block-navigation.js"></script>
     </body>
 </html>
-    
