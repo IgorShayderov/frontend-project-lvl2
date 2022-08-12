@@ -1,0 +1,100 @@
+{
+  "common": {
+    "type": "nested",
+    "children": {
+      "follow": {
+        "type": "only-in-second",
+        "secondValue": false
+      },
+      "setting1": {
+        "type": "both-equal",
+        "firstValue": "Value 1"
+      },
+      "setting2": {
+        "type": "only-in-first",
+        "firstValue": 200
+      },
+      "setting3": {
+        "type": "changed",
+        "firstValue": true,
+        "secondValue": {
+          "key": "value"
+        }
+      },
+      "setting4": {
+        "type": "only-in-second",
+        "secondValue": "blah blah"
+      },
+      "setting5": {
+        "type": "only-in-second",
+        "secondValue": {
+          "key5": "value5"
+        }
+      },
+      "setting6": {
+        "type": "nested",
+        "children": {
+          "doge": {
+            "type": "nested",
+            "children": {
+              "wow": {
+                "type": "changed",
+                "firstValue": "too much",
+                "secondValue": "so much"
+              }
+            }
+          },
+          "key": {
+            "type": "both-equal",
+            "firstValue": "value"
+          },
+          "ops": {
+            "type": "only-in-second",
+            "secondValue": "vops"
+          }
+        }
+      }
+    }
+  },
+  "group1": {
+    "type": "nested",
+    "children": {
+      "baz": {
+        "type": "changed",
+        "firstValue": "bas",
+        "secondValue": "bars"
+      },
+      "foo": {
+        "type": "both-equal",
+        "firstValue": "bar"
+      },
+      "nest": {
+        "type": "changed",
+        "firstValue": {
+          "key": "value"
+        },
+        "secondValue": "str"
+      }
+    }
+  },
+  "group2": {
+    "type": "only-in-first",
+    "firstValue": {
+      "abc": 12345,
+      "deep": {
+        "id": 45
+      }
+    }
+  },
+  "group3": {
+    "type": "only-in-second",
+    "secondValue": {
+      "deep": {
+        "id": {
+          "number": 45
+        }
+      },
+      "fee": 100500
+    }
+  }
+}
