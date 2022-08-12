@@ -1,6 +1,6 @@
 import yaml from 'js-yaml';
 
-export default function parseData(data, extension) {
+const parseData = (data, extension) => {
   switch (extension) {
     case '.json':
       return JSON.parse(data);
@@ -9,4 +9,6 @@ export default function parseData(data, extension) {
     default:
       throw new Error(`Unknown file extension - ${extension}`);
   }
-}
+};
+
+export default parseData;

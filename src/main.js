@@ -5,7 +5,7 @@ import parseData from './parsers.js';
 import formatDiff from './formatters/index.js';
 import buildTree from './treeBuilder.js';
 
-function getFilesByPath(filepath1, filepath2) {
+const getFilesByPath = (filepath1, filepath2) => {
   const workingDir = process.cwd();
   const files = [filepath1, filepath2].map((filepath) => {
     const fullPath = path.resolve(workingDir, filepath);
@@ -16,11 +16,13 @@ function getFilesByPath(filepath1, filepath2) {
   });
 
   return files;
-}
+};
 
-export default function compareFiles(filepath1, filepath2, format) {
+const compareFiles = (filepath1, filepath2, format) => {
   const [firstFile, secondFile] = getFilesByPath(filepath1, filepath2);
   const diff = buildTree(firstFile, secondFile);
 
   return formatDiff(diff, format || 'stylish');
-}
+};
+
+export default compareFiles;

@@ -1,4 +1,4 @@
-export function printValue(value) {
+export const stringifyValue = (value) => {
   const valueType = typeof value;
 
   if (value === null) {
@@ -13,9 +13,9 @@ export function printValue(value) {
     default:
       return `${value}`;
   }
-}
+};
 
-export default function plain(diff) {
+const plain = (diff) => {
   function formatDeeper(data, root = '') {
     return Object.keys(data)
       .reduce((result, key) => {
@@ -38,12 +38,12 @@ export default function plain(diff) {
             }
 
             return `${result}Property '${propPath}' was added with value: `
-                 + `${printValue(secondValue)}\n`;
+                 + `${stringifyValue(secondValue)}\n`;
           case 'nested':
             return `${result}${formatDeeper(children, `${propPath}.`)}`;
           case 'changed':
             return `${result}Property '${propPath}' was updated.`
-                 + ` From ${printValue(firstValue)} to ${printValue(secondValue)}\n`;
+                 + ` From ${stringifyValue(firstValue)} to ${stringifyValue(secondValue)}\n`;
           default:
             throw new Error(`Unknown type ${type}`);
         }
@@ -51,4 +51,6 @@ export default function plain(diff) {
   }
 
   return formatDeeper(diff).slice(0, -1);
-}
+};
+
+export default plain;

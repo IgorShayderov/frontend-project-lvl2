@@ -1,8 +1,8 @@
 import _ from 'lodash';
 
-export default function stylish(diff) {
-  function formatDeeper(data, depth = 1) {
-    function stringify(value) {
+const stylish = (diff) => {
+  const formatDeeper = (data, depth = 1) => {
+    const stringify = (value) => {
       if (_.isPlainObject(value)) {
         const valueKeys = Object.keys(value);
         const objAsDiff = valueKeys.reduce((obj, key) => {
@@ -21,7 +21,7 @@ export default function stylish(diff) {
       }
 
       return `${value}`;
-    }
+    };
 
     return Object.keys(data)
       .reduce((result, diffKey, diffIndex, diffsList) => {
@@ -64,7 +64,9 @@ export default function stylish(diff) {
 
         return `${noEndingBraceStr}${getDiffStrByType()}}`;
       }, '{\n}');
-  }
+  };
 
   return formatDeeper(diff);
-}
+};
+
+export default stylish;

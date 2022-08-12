@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-export default function buildTree(firstStructure, secondStructure) {
+const buildTree = (firstStructure, secondStructure) => {
   const allKeys = _.union(Object.keys(firstStructure), (Object.keys(secondStructure)));
   const sortedKeys = _.sortBy(allKeys);
 
@@ -60,4 +60,6 @@ export default function buildTree(firstStructure, secondStructure) {
       [fileKey]: diff,
     };
   }, {});
-}
+};
+
+export default buildTree;

@@ -2,6 +2,15 @@
 
 Gendiff can compare files and show their differences.
 
+## Installation
+
+To install gendiff clone repository and write 'make install' in terminal.
+
+## Requirements
+
+Node.js v14+
+Gendiff is not tested with lower versions of Node.js, so proper work is not guaranteed.
+
 ### Hexlet tests and linter status:
 
 [![Hexlet-check](https://github.com/IgorShayderov/frontend-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/IgorShayderov/frontend-project-lvl2/actions)

@@ -1,7 +1,7 @@
 import plain from './plain.js';
 import stylish from './stylish.js';
 
-export default function formatDiff(diff, formatterName) {
+const formatDiff = (diff, formatterName) => {
   switch (formatterName) {
     case 'stylish':
       return stylish(diff);
@@ -12,4 +12,6 @@ export default function formatDiff(diff, formatterName) {
     default:
       throw new Error(`Unknown formatter name - ${formatterName}`);
   }
-}
+};
+
+export default formatDiff;
