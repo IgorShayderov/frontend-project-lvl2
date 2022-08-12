@@ -26,30 +26,24 @@ const stylish = (diff) => {
     return Object.keys(data)
       .reduce((result, diffKey, diffIndex, diffsList) => {
         function getDiffStrByType() {
-          const {
-            type,
-            firstValue,
-            secondValue,
-            children,
-          } = data[diffKey];
-
           const indent = '    '.repeat(depth);
           const mathSignLineIndent = indent.slice(0, -2);
+          const diffNode = data[diffKey];
 
-          switch (type) {
+          switch (diffNode.type) {
             case 'added':
-              return `${mathSignLineIndent}- ${diffKey}: ${stringify(firstValue)}\n`;
+              return `${mathSignLineIndent}- ${diffKey}: ${stringify(diffNode.firstValue)}\n`;
             case 'deleted':
-              return `${mathSignLineIndent}+ ${diffKey}: ${stringify(secondValue)}\n`;
+              return `${mathSignLineIndent}+ ${diffKey}: ${stringify(diffNode.secondValue)}\n`;
             case 'nested':
-              return `${indent}${diffKey}: ${formatDeeper(children, depth + 1)}\n`;
+              return `${indent}${diffKey}: ${formatDeeper(diffNode.children, depth + 1)}\n`;
             case 'unchanged':
-              return `${indent}${diffKey}: ${stringify(firstValue)}\n`;
+              return `${indent}${diffKey}: ${stringify(diffNode.firstValue)}\n`;
             case 'changed':
-              return `${mathSignLineIndent}- ${diffKey}: ${stringify(firstValue)}\n`
-                   + `${mathSignLineIndent}+ ${diffKey}: ${stringify(secondValue)}\n`;
+              return `${mathSignLineIndent}- ${diffKey}: ${stringify(diffNode.firstValue)}\n`
+                   + `${mathSignLineIndent}+ ${diffKey}: ${stringify(diffNode.secondValue)}\n`;
             default:
-              throw new Error(`Unknown type ${type}`);
+              throw new Error(`Unknown type ${diffNode.type}`);
           }
         }
 
