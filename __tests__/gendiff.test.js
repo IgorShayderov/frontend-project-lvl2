@@ -1,12 +1,10 @@
-import { fileURLToPath } from 'url';
-import path, { dirname } from 'path';
+import path from 'path';
 import { readFileSync } from 'fs';
 
 import genDiff from '../src/main.js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
+const dirname = process.cwd();
+const getFixturePath = (filename) => path.join(dirname, '__fixtures__', filename);
 
 describe.each([['stylish'], ['plain'], ['json']])('%s formatter', (formatter) => {
   const filepathOfExpected = getFixturePath(`${formatter}.txt`);
