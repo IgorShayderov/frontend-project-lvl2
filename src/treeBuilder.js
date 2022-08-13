@@ -4,18 +4,19 @@ const buildTree = (firstStructure, secondStructure) => {
   const allKeys = _.union(Object.keys(firstStructure), (Object.keys(secondStructure)));
   const sortedKeys = _.sortBy(allKeys);
 
-  return sortedKeys.reduce((result, fileKey) => {
-    const isExistsInFirst = _.has(firstStructure, fileKey);
-    const isExistsInSecond = _.has(secondStructure, fileKey);
+  return sortedKeys.reduce((result, key) => {
+    const isExistsInFirst = _.has(firstStructure, key);
+    const isExistsInSecond = _.has(secondStructure, key);
 
-    const firstValue = firstStructure[fileKey];
-    const secondValue = secondStructure[fileKey];
+    const firstValue = firstStructure[key];
+    const secondValue = secondStructure[key];
 
     const diff = (() => {
       if (isExistsInFirst && !isExistsInSecond) {
         return {
           type: 'added',
           firstValue,
+          key,
         };
       }
 
@@ -23,6 +24,7 @@ const buildTree = (firstStructure, secondStructure) => {
         return {
           type: 'deleted',
           secondValue,
+          key,
         };
       }
 
@@ -33,6 +35,7 @@ const buildTree = (firstStructure, secondStructure) => {
           return {
             type: 'unchanged',
             firstValue,
+            key,
           };
         }
 
@@ -44,6 +47,7 @@ const buildTree = (firstStructure, secondStructure) => {
           return {
             type: 'nested',
             children: buildTree(firstValue, secondValue),
+            key,
           };
         }
       }
@@ -52,12 +56,13 @@ const buildTree = (firstStructure, secondStructure) => {
         type: 'changed',
         firstValue,
         secondValue,
+        key,
       };
     })();
 
     return {
       ...result,
-      [fileKey]: diff,
+      [key]: diff,
     };
   }, {});
 };

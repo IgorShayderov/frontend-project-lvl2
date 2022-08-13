@@ -4,32 +4,38 @@
     "children": {
       "follow": {
         "type": "deleted",
-        "secondValue": false
+        "secondValue": false,
+        "key": "follow"
       },
       "setting1": {
         "type": "unchanged",
-        "firstValue": "Value 1"
+        "firstValue": "Value 1",
+        "key": "setting1"
       },
       "setting2": {
         "type": "added",
-        "firstValue": 200
+        "firstValue": 200,
+        "key": "setting2"
       },
       "setting3": {
         "type": "changed",
         "firstValue": true,
         "secondValue": {
           "key": "value"
-        }
+        },
+        "key": "setting3"
       },
       "setting4": {
         "type": "deleted",
-        "secondValue": "blah blah"
+        "secondValue": "blah blah",
+        "key": "setting4"
       },
       "setting5": {
         "type": "deleted",
         "secondValue": {
           "key5": "value5"
-        }
+        },
+        "key": "setting5"
       },
       "setting6": {
         "type": "nested",
@@ -40,21 +46,27 @@
               "wow": {
                 "type": "changed",
                 "firstValue": "too much",
-                "secondValue": "so much"
+                "secondValue": "so much",
+                "key": "wow"
               }
-            }
+            },
+            "key": "doge"
           },
           "key": {
             "type": "unchanged",
-            "firstValue": "value"
+            "firstValue": "value",
+            "key": "key"
           },
           "ops": {
             "type": "deleted",
-            "secondValue": "vops"
+            "secondValue": "vops",
+            "key": "ops"
           }
-        }
+        },
+        "key": "setting6"
       }
-    }
+    },
+    "key": "common"
   },
   "group1": {
     "type": "nested",
@@ -62,20 +74,24 @@
       "baz": {
         "type": "changed",
         "firstValue": "bas",
-        "secondValue": "bars"
+        "secondValue": "bars",
+        "key": "baz"
       },
       "foo": {
         "type": "unchanged",
-        "firstValue": "bar"
+        "firstValue": "bar",
+        "key": "foo"
       },
       "nest": {
         "type": "changed",
         "firstValue": {
           "key": "value"
         },
-        "secondValue": "str"
+        "secondValue": "str",
+        "key": "nest"
       }
-    }
+    },
+    "key": "group1"
   },
   "group2": {
     "type": "added",
@@ -84,7 +100,8 @@
       "deep": {
         "id": 45
       }
-    }
+    },
+    "key": "group2"
   },
   "group3": {
     "type": "deleted",
@@ -95,6 +112,7 @@
         }
       },
       "fee": 100500
-    }
+    },
+    "key": "group3"
   }
 }

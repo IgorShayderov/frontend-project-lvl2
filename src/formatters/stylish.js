@@ -1,64 +1,70 @@
 import _ from 'lodash';
 
+const getIndent = (depth) => '    '.repeat(depth);
+const getSignLineIndent = (depth) => getIndent(depth).slice(0, -2);
+
+const stringify = (data, depth, mapping) => {
+  if (_.isPlainObject(data)) {
+    const output = Object.entries(data)
+      .map(([key, value]) => mapping
+        .unchanged({ key, firstValue: value }, depth + 1));
+
+    return `{\n${output.join('')}${getIndent(depth)}}`;
+  }
+
+  return `${data}`;
+};
+
+const mapping = {
+  added: (node, depth) => {
+    const { key, firstValue } = node;
+    const stringifiedValue = stringify(firstValue, depth, mapping);
+
+    return `${getSignLineIndent(depth)}- ${key}: ${stringifiedValue}\n`;
+  },
+  deleted: (node, depth) => {
+    const { key, secondValue } = node;
+    const stringifiedValue = stringify(secondValue, depth, mapping);
+
+    return `${getSignLineIndent(depth)}+ ${key}: ${stringifiedValue}\n`;
+  },
+  nested: (node, depth, formatChildren) => {
+    const { key, children } = node;
+
+    return `${getIndent(depth)}${key}: ${formatChildren(children, depth + 1)}\n`;
+  },
+  unchanged: (node, depth) => {
+    const { key, firstValue } = node;
+    const stringifiedValue = stringify(firstValue, depth, mapping);
+
+    return `${getIndent(depth)}${key}: ${stringifiedValue}\n`;
+  },
+  changed: (node, depth) => {
+    const { key, firstValue, secondValue } = node;
+    const stringifiedValue1 = stringify(firstValue, depth, mapping);
+    const stringifiedValue2 = stringify(secondValue, depth, mapping);
+
+    return `${getSignLineIndent(depth)}- ${key}: ${stringifiedValue1}\n`
+         + `${getSignLineIndent(depth)}+ ${key}: ${stringifiedValue2}\n`;
+  },
+};
+
 const stylish = (diff) => {
-  const formatDeeper = (data, depth = 1) => {
-    const stringify = (value) => {
-      if (_.isPlainObject(value)) {
-        const valueKeys = Object.keys(value);
-        const objAsDiff = valueKeys.reduce((obj, key) => {
-          const newObj = {
-            ...obj,
-            [key]: {
-              firstValue: value[key],
-              type: 'unchanged',
-            },
-          };
+  const formatDeeper = (data, depth = 1) => Object.keys(data)
+    .reduce((result, diffKey, diffIndex, diffsList) => {
+      const node = data[diffKey];
+      const diffNode = mapping[node.type](node, depth, formatDeeper);
+      const noEndingBraceStr = result.slice(0, result.length - 1);
+      const isLastDiff = diffIndex === diffsList.length - 1;
 
-          return newObj;
-        }, {});
+      if (isLastDiff) {
+        const endBraceIndent = '    '.repeat(depth - 1);
 
-        return formatDeeper(objAsDiff, depth + 1);
+        return `${noEndingBraceStr}${diffNode}${endBraceIndent}}`;
       }
 
-      return `${value}`;
-    };
-
-    return Object.keys(data)
-      .reduce((result, diffKey, diffIndex, diffsList) => {
-        function getDiffStrByType() {
-          const indent = '    '.repeat(depth);
-          const mathSignLineIndent = indent.slice(0, -2);
-          const diffNode = data[diffKey];
-
-          switch (diffNode.type) {
-            case 'added':
-              return `${mathSignLineIndent}- ${diffKey}: ${stringify(diffNode.firstValue)}\n`;
-            case 'deleted':
-              return `${mathSignLineIndent}+ ${diffKey}: ${stringify(diffNode.secondValue)}\n`;
-            case 'nested':
-              return `${indent}${diffKey}: ${formatDeeper(diffNode.children, depth + 1)}\n`;
-            case 'unchanged':
-              return `${indent}${diffKey}: ${stringify(diffNode.firstValue)}\n`;
-            case 'changed':
-              return `${mathSignLineIndent}- ${diffKey}: ${stringify(diffNode.firstValue)}\n`
-                   + `${mathSignLineIndent}+ ${diffKey}: ${stringify(diffNode.secondValue)}\n`;
-            default:
-              throw new Error(`Unknown type ${diffNode.type}`);
-          }
-        }
-
-        const noEndingBraceStr = result.slice(0, result.length - 1);
-        const isLastDiff = diffIndex === diffsList.length - 1;
-
-        if (isLastDiff) {
-          const endBraceIndent = '    '.repeat(depth - 1);
-
-          return `${noEndingBraceStr}${getDiffStrByType()}${endBraceIndent}}`;
-        }
-
-        return `${noEndingBraceStr}${getDiffStrByType()}}`;
-      }, '{\n}');
-  };
+      return `${noEndingBraceStr}${diffNode}}`;
+    }, '{\n}');
 
   return formatDeeper(diff);
 };
