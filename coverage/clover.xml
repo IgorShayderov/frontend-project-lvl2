@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1660427721560" clover="3.2.0">
-  <project timestamp="1660427721560" name="All files">
-    <metrics statements="103" coveredstatements="99" conditionals="46" coveredconditionals="40" methods="24" coveredmethods="24" elements="173" coveredelements="163" complexity="0" loc="103" ncloc="103" packages="2" files="6" classes="6"/>
+<coverage generated="1660467353400" clover="3.2.0">
+  <project timestamp="1660467353400" name="All files">
+    <metrics statements="102" coveredstatements="98" conditionals="44" coveredconditionals="38" methods="24" coveredmethods="24" elements="170" coveredelements="160" complexity="0" loc="102" ncloc="102" packages="2" files="6" classes="6"/>
     <package name="src">
       <metrics statements="41" coveredstatements="40" conditionals="23" coveredconditionals="20" methods="7" coveredmethods="7"/>
       <file name="main.js" path="/Users/igor_s/Documents/projects/frontend-project-lvl2/src/main.js">
@@ -56,7 +56,7 @@
       </file>
     </package>
     <package name="src.formatters">
-      <metrics statements="62" coveredstatements="59" conditionals="23" coveredconditionals="20" methods="17" coveredmethods="17"/>
+      <metrics statements="61" coveredstatements="58" conditionals="21" coveredconditionals="18" methods="17" coveredmethods="17"/>
       <file name="index.js" path="/Users/igor_s/Documents/projects/frontend-project-lvl2/src/formatters/index.js">
         <metrics statements="6" coveredstatements="5" conditionals="4" coveredconditionals="3" methods="1" coveredmethods="1"/>
         <line num="4" count="1" type="stmt"/>
@@ -67,7 +67,7 @@
         <line num="13" count="0" type="stmt"/>
       </file>
       <file name="plain.js" path="/Users/igor_s/Documents/projects/frontend-project-lvl2/src/formatters/plain.js">
-        <metrics statements="21" coveredstatements="19" conditionals="14" coveredconditionals="12" methods="4" coveredmethods="4"/>
+        <metrics statements="20" coveredstatements="18" conditionals="12" coveredconditionals="10" methods="4" coveredmethods="4"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="26" type="stmt"/>
         <line num="4" count="26" type="cond" truecount="1" falsecount="1"/>
@@ -81,14 +81,13 @@
         <line num="27" count="36" type="stmt"/>
         <line num="29" count="36" type="stmt"/>
         <line num="31" count="36" type="cond" truecount="5" falsecount="1"/>
-        <line num="33" count="4" type="stmt"/>
-        <line num="36" count="16" type="cond" truecount="2" falsecount="0"/>
-        <line num="37" count="6" type="stmt"/>
-        <line num="40" count="10" type="stmt"/>
-        <line num="43" count="8" type="stmt"/>
-        <line num="45" count="8" type="stmt"/>
-        <line num="48" count="0" type="stmt"/>
-        <line num="53" count="2" type="stmt"/>
+        <line num="33" count="10" type="stmt"/>
+        <line num="36" count="4" type="stmt"/>
+        <line num="38" count="6" type="stmt"/>
+        <line num="40" count="8" type="stmt"/>
+        <line num="42" count="8" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="50" count="2" type="stmt"/>
       </file>
       <file name="stylish.js" path="/Users/igor_s/Documents/projects/frontend-project-lvl2/src/formatters/stylish.js">
         <metrics statements="35" coveredstatements="35" conditionals="5" coveredconditionals="5" methods="12" coveredmethods="12"/>
@@ -101,12 +100,12 @@
         <line num="12" count="16" type="stmt"/>
         <line num="15" count="40" type="stmt"/>
         <line num="18" count="1" type="stmt"/>
-        <line num="20" count="4" type="stmt"/>
-        <line num="21" count="4" type="stmt"/>
-        <line num="23" count="4" type="stmt"/>
-        <line num="26" count="10" type="stmt"/>
-        <line num="27" count="10" type="stmt"/>
-        <line num="29" count="10" type="stmt"/>
+        <line num="20" count="10" type="stmt"/>
+        <line num="21" count="10" type="stmt"/>
+        <line num="23" count="10" type="stmt"/>
+        <line num="26" count="4" type="stmt"/>
+        <line num="27" count="4" type="stmt"/>
+        <line num="29" count="4" type="stmt"/>
         <line num="32" count="8" type="stmt"/>
         <line num="34" count="8" type="stmt"/>
         <line num="37" count="26" type="stmt"/>

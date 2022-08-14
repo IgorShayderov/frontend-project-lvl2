@@ -14,7 +14,7 @@ const buildTree = (firstStructure, secondStructure) => {
     const diff = (() => {
       if (isExistsInFirst && !isExistsInSecond) {
         return {
-          type: 'added',
+          type: 'deleted',
           firstValue,
           key,
         };
@@ -22,7 +22,7 @@ const buildTree = (firstStructure, secondStructure) => {
 
       if (!isExistsInFirst && isExistsInSecond) {
         return {
-          type: 'deleted',
+          type: 'added',
           secondValue,
           key,
         };

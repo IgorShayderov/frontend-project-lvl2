@@ -30,15 +30,12 @@ const plain = (diff) => {
 
         switch (type) {
           case 'added':
-            return `${result}Property '${propPath}' was removed\n`;
-          case 'deleted':
-          case 'unchanged':
-            if (secondValue === undefined) {
-              return result;
-            }
-
             return `${result}Property '${propPath}' was added with value: `
-                 + `${stringifyValue(secondValue)}\n`;
+            + `${stringifyValue(secondValue)}\n`;
+          case 'deleted':
+            return `${result}Property '${propPath}' was removed\n`;
+          case 'unchanged':
+            return result;
           case 'nested':
             return `${result}${formatDeeper(children, `${propPath}.`)}`;
           case 'changed':

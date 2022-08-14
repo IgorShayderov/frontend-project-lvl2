@@ -17,16 +17,16 @@ const stringify = (data, depth, mapping) => {
 
 const mapping = {
   added: (node, depth) => {
-    const { key, firstValue } = node;
-    const stringifiedValue = stringify(firstValue, depth, mapping);
-
-    return `${getSignLineIndent(depth)}- ${key}: ${stringifiedValue}\n`;
-  },
-  deleted: (node, depth) => {
     const { key, secondValue } = node;
     const stringifiedValue = stringify(secondValue, depth, mapping);
 
     return `${getSignLineIndent(depth)}+ ${key}: ${stringifiedValue}\n`;
+  },
+  deleted: (node, depth) => {
+    const { key, firstValue } = node;
+    const stringifiedValue = stringify(firstValue, depth, mapping);
+
+    return `${getSignLineIndent(depth)}- ${key}: ${stringifiedValue}\n`;
   },
   nested: (node, depth, formatChildren) => {
     const { key, children } = node;
