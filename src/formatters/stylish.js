@@ -1,7 +1,6 @@
 import _ from 'lodash';
 
-const getIndent = (depth) => '    '.repeat(depth);
-const getSignLineIndent = (depth) => getIndent(depth).slice(0, -2);
+const indent = (depth) => '    '.repeat(depth).slice(0, -2);
 
 const stringify = (data, depth, mapping) => {
   if (_.isPlainObject(data)) {
@@ -9,7 +8,7 @@ const stringify = (data, depth, mapping) => {
       .map(([key, value]) => mapping
         .unchanged({ key, firstValue: value }, depth + 1));
 
-    return `{\n${output.join('')}${getIndent(depth)}}`;
+    return `{\n${output.join('')}${indent(depth)}  }`;
   }
 
   return `${data}`;
@@ -17,30 +16,30 @@ const stringify = (data, depth, mapping) => {
 
 const mapping = {
   added: (node, depth) => {
-    const { key, secondValue } = node;
+    const addedValue = stringify(node.secondValue, depth, mapping);
 
-    return `${getSignLineIndent(depth)}+ ${key}: ${stringify(secondValue, depth, mapping)}\n`;
+    return `${indent(depth)}+ ${node.key}: ${addedValue}\n`;
   },
   deleted: (node, depth) => {
-    const { key, firstValue } = node;
+    const deletedValue = stringify(node.firstValue, depth, mapping);
 
-    return `${getSignLineIndent(depth)}- ${key}: ${stringify(firstValue, depth, mapping)}\n`;
+    return `${indent(depth)}- ${node.key}: ${deletedValue}\n`;
   },
   nested: (node, depth, formatChildren) => {
-    const { key, children } = node;
+    const children = formatChildren(node.children, depth + 1);
 
-    return `${getIndent(depth)}${key}: ${formatChildren(children, depth + 1)}\n`;
+    return `${indent(depth)}  ${node.key}: ${children}\n`;
   },
   unchanged: (node, depth) => {
-    const { key, firstValue } = node;
+    const unchangedValue = stringify(node.firstValue, depth, mapping);
 
-    return `${getIndent(depth)}${key}: ${stringify(firstValue, depth, mapping)}\n`;
+    return `${indent(depth)}  ${node.key}: ${unchangedValue}\n`;
   },
   changed: (node, depth) => {
     const { key, firstValue, secondValue } = node;
 
-    return `${getSignLineIndent(depth)}- ${key}: ${stringify(firstValue, depth, mapping)}\n`
-         + `${getSignLineIndent(depth)}+ ${key}: ${stringify(secondValue, depth, mapping)}\n`;
+    return `${indent(depth)}- ${key}: ${stringify(firstValue, depth, mapping)}\n`
+         + `${indent(depth)}+ ${key}: ${stringify(secondValue, depth, mapping)}\n`;
   },
 };
 

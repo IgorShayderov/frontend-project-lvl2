@@ -1,69 +1,44 @@
 import _ from 'lodash';
 
+const areBothValuesObjects = (firstValue, secondValue) => {
+  const isFirstValueObject = _.isPlainObject(firstValue);
+  const isScondValueObject = _.isPlainObject(secondValue);
+
+  return isFirstValueObject && isScondValueObject;
+};
+
 const buildTree = (firstStructure, secondStructure) => {
   const allKeys = _.union(Object.keys(firstStructure), (Object.keys(secondStructure)));
-  const sortedKeys = _.sortBy(allKeys);
 
-  return sortedKeys.reduce((result, key) => {
-    const isExistsInFirst = _.has(firstStructure, key);
-    const isExistsInSecond = _.has(secondStructure, key);
-
+  return _.sortBy(allKeys).reduce((result, key) => {
     const firstValue = firstStructure[key];
     const secondValue = secondStructure[key];
 
     const diff = (() => {
-      if (isExistsInFirst && !isExistsInSecond) {
-        return {
-          type: 'deleted',
-          firstValue,
-          key,
-        };
+      if (!_.has(secondStructure, key)) {
+        return { type: 'deleted', firstValue, key };
       }
 
-      if (!isExistsInFirst && isExistsInSecond) {
-        return {
-          type: 'added',
-          secondValue,
-          key,
-        };
+      if (!_.has(firstStructure, key)) {
+        return { type: 'added', secondValue, key };
       }
 
-      if (isExistsInFirst && isExistsInSecond) {
-        const areValuesEqual = _.isEqual(firstValue, secondValue);
+      if (_.isEqual(firstValue, secondValue)) {
+        return { type: 'unchanged', firstValue, key };
+      }
 
-        if (areValuesEqual) {
-          return {
-            type: 'unchanged',
-            firstValue,
-            key,
-          };
-        }
+      if (areBothValuesObjects(firstValue, secondValue)) {
+        const children = buildTree(firstValue, secondValue);
 
-        const isFirstValueObject = _.isPlainObject(firstValue);
-        const isScondValueObject = _.isPlainObject(secondValue);
-        const areBothValuesObjects = isFirstValueObject && isScondValueObject;
-
-        if (areBothValuesObjects) {
-          return {
-            type: 'nested',
-            children: buildTree(firstValue, secondValue),
-            key,
-          };
-        }
+        return { type: 'nested', children, key };
       }
 
       return {
-        type: 'changed',
-        firstValue,
-        secondValue,
-        key,
+        type: 'changed', firstValue, secondValue, key,
       };
     })();
 
-    return {
-      ...result,
-      [key]: diff,
-    };
+    return { ...result, [key]: diff };
   }, {});
 };
 
