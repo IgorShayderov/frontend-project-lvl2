@@ -18,15 +18,13 @@ const stringify = (data, depth, mapping) => {
 const mapping = {
   added: (node, depth) => {
     const { key, secondValue } = node;
-    const stringifiedValue = stringify(secondValue, depth, mapping);
 
-    return `${getSignLineIndent(depth)}+ ${key}: ${stringifiedValue}\n`;
+    return `${getSignLineIndent(depth)}+ ${key}: ${stringify(secondValue, depth, mapping)}\n`;
   },
   deleted: (node, depth) => {
     const { key, firstValue } = node;
-    const stringifiedValue = stringify(firstValue, depth, mapping);
 
-    return `${getSignLineIndent(depth)}- ${key}: ${stringifiedValue}\n`;
+    return `${getSignLineIndent(depth)}- ${key}: ${stringify(firstValue, depth, mapping)}\n`;
   },
   nested: (node, depth, formatChildren) => {
     const { key, children } = node;
@@ -35,17 +33,14 @@ const mapping = {
   },
   unchanged: (node, depth) => {
     const { key, firstValue } = node;
-    const stringifiedValue = stringify(firstValue, depth, mapping);
 
-    return `${getIndent(depth)}${key}: ${stringifiedValue}\n`;
+    return `${getIndent(depth)}${key}: ${stringify(firstValue, depth, mapping)}\n`;
   },
   changed: (node, depth) => {
     const { key, firstValue, secondValue } = node;
-    const stringifiedValue1 = stringify(firstValue, depth, mapping);
-    const stringifiedValue2 = stringify(secondValue, depth, mapping);
 
-    return `${getSignLineIndent(depth)}- ${key}: ${stringifiedValue1}\n`
-         + `${getSignLineIndent(depth)}+ ${key}: ${stringifiedValue2}\n`;
+    return `${getSignLineIndent(depth)}- ${key}: ${stringify(firstValue, depth, mapping)}\n`
+         + `${getSignLineIndent(depth)}+ ${key}: ${stringify(secondValue, depth, mapping)}\n`;
   },
 };
 
@@ -55,9 +50,8 @@ const stylish = (diff) => {
       const node = data[diffKey];
       const diffNode = mapping[node.type](node, depth, formatDeeper);
       const noEndingBraceStr = result.slice(0, result.length - 1);
-      const isLastDiff = diffIndex === diffsList.length - 1;
 
-      if (isLastDiff) {
+      if (diffIndex === diffsList.length - 1) {
         const endBraceIndent = '    '.repeat(depth - 1);
 
         return `${noEndingBraceStr}${diffNode}${endBraceIndent}}`;
