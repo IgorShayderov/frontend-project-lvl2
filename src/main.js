@@ -5,22 +5,19 @@ import parseData from './parsers.js';
 import formatDiff from './formatters/index.js';
 import buildTree from './treeBuilder.js';
 
-const getFilesByPath = (filepath1, filepath2) => {
-  const workingDir = process.cwd();
-  const files = [filepath1, filepath2].map((filepath) => {
-    const fullPath = path.resolve(workingDir, filepath);
-    const file = fs.readFileSync(fullPath);
-    const fileExtension = path.extname(filepath);
+const buildFullPath = (filepath) => path.resolve(process.cwd(), filepath);
+const extractFormat = (filepath) => path.extname(filepath).slice(1);
+const getData = (filepath) => {
+  const file = fs.readFileSync(filepath, 'utf-8');
 
-    return parseData(file, fileExtension);
-  });
-
-  return files;
+  return parseData(file, extractFormat(filepath));
 };
 
 const compareFiles = (filepath1, filepath2, format) => {
-  const [firstFile, secondFile] = getFilesByPath(filepath1, filepath2);
-  const diff = buildTree(firstFile, secondFile);
+  const data1 = getData(buildFullPath(filepath1));
+  const data2 = getData(buildFullPath(filepath2));
+
+  const diff = buildTree(data1, data2);
 
   return formatDiff(diff, format || 'stylish');
 };
