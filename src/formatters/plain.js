@@ -1,18 +1,15 @@
+import _ from 'lodash';
+
 export const stringifyValue = (value) => {
-  const valueType = typeof value;
-
-  if (value === null) {
-    return 'null';
+  if (typeof value === 'string') {
+    return `'${value}'`;
   }
 
-  switch (valueType) {
-    case 'string':
-      return `'${value}'`;
-    case 'object':
-      return '[complex value]';
-    default:
-      return `${value}`;
+  if (_.isObject(value)) {
+    return '[complex value]';
   }
+
+  return `${value}`;
 };
 
 const formatDeeper = (data, root = '') => Object.keys(data)
