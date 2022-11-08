@@ -1,4 +1,4 @@
-# Gendiff project
+# Gendiff
 
 Gendiff can compare files and show their differences.
 
