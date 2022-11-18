@@ -36,7 +36,7 @@ Gendiff is not tested with lower versions of Node.js, so proper work is not guar
 ### Example of yml files comparison:
 [![asciicast](https://asciinema.org/a/9BYXdb8lelOTwGRkLsx8b71aT.svg)](https://asciinema.org/a/9BYXdb8lelOTwGRkLsx8b71aT)
 
-#### Example of nested files comparison:
+### Example of nested files comparison:
 [![asciicast](https://asciinema.org/a/6csACtwDV2docQrTWQuyUkbA7.svg)](https://asciinema.org/a/6csACtwDV2docQrTWQuyUkbA7)
 
 ### Example of plain format comparison:
